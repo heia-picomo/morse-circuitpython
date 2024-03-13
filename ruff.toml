@@ -1,0 +1,4 @@
+exclude = ["lib/adafruit**"]
+line-length = 88
+indent-width = 4
+lint.select = ["E", "F", "B", "Q", "N", "I", "UP", "PL", "RUF", "C90"]

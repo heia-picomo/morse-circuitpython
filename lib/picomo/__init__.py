@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: 2024 Jacques Supcik
 #
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-License-Identifier: MIT
 
 """
 `picomo`
@@ -64,11 +64,12 @@ led = RGBLed(PWM_FREQUENCY)
 i2c = board.I2C()
 sht = adafruit_shtc3.SHTC3(i2c)
 
-for name, pinName in button_pins.items():
-    pin = digitalio.DigitalInOut(pinName)
+for name, pin_name in button_pins.items():
+    pin = digitalio.DigitalInOut(pin_name)
     pin.direction = digitalio.Direction.INPUT
     pin.pull = digitalio.Pull.UP
     buttons[name] = Debouncer(pin)
+
 
 def update():
     for name in button_pins.keys():

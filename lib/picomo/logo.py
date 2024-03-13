@@ -25,7 +25,7 @@ import re
 import displayio
 
 
-class Logo (displayio.TileGrid):
+class Logo(displayio.TileGrid):
     def __init__(self):
         file_name = re.sub(r"(.*)\.m?py", r"\1.bmp", __file__)
         self._bitmap = displayio.OnDiskBitmap(file_name)

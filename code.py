@@ -1,3 +1,14 @@
+################################################################################
+# @brief       : Morse Code Generator for PicoMo
+# @author      : Jacques Supcik <jacques.supcik@hefr.ch>
+# @date        : 13. March 2024
+# ------------------------------------------------------------------------------
+# @copyright   : Copyright (c) 2024 HEIA-FR / ISC
+#                Haute école d'ingénierie et d'architecture de Fribourg
+#                Informatique et Systèmes de Communication
+# @attention   : SPDX-License-Identifier: MIT
+################################################################################
+
 import time
 
 import board
@@ -7,21 +18,21 @@ from adafruit_bitmap_font import bitmap_font
 from adafruit_display_text.label import Label
 from morse import MorseCode
 
-timeUnit = 0.1
+time_unit = 0.1
 
 
 def dit():
     picomo.led.set((255, 255, 255))
-    picomo.buzzer.play(timeUnit)
+    picomo.buzzer.play(time_unit)
     picomo.led.set((0, 0, 0))
-    time.sleep(timeUnit)
+    time.sleep(time_unit)
 
 
 def dah():
     picomo.led.set((255, 255, 255))
-    picomo.buzzer.play(3 * timeUnit)
+    picomo.buzzer.play(3 * time_unit)
     picomo.led.set((0, 0, 0))
-    time.sleep(timeUnit)
+    time.sleep(time_unit)
 
 
 def send(m, message):
@@ -32,9 +43,9 @@ def send(m, message):
         elif i == "-":
             dah()
         elif i == " ":
-            time.sleep(2 * timeUnit)
+            time.sleep(2 * time_unit)
         elif i == "/":
-            time.sleep(6 * timeUnit)
+            time.sleep(6 * time_unit)
 
 
 def main():
@@ -43,41 +54,41 @@ def main():
     group.append(picomo.logo)
     display.root_group = group
 
-    mainGroup = displayio.Group()
+    main_group = displayio.Group()
 
     buttons = ["sw_up", "sw_left", "sw_mid", "sw_right", "sw_down"]
     buttons_icn = ["/pico_buttons_" + i + ".bmp" for i in ["t", "l", "c", "r", "b"]]
-    messages = ["SOS", "Bonjour", "Oui", "Non", "Salut Jacques"]
+    messages = ["SOS", "Bonjour", "Oui", "Non", "HEIA"]
 
     y0 = 45
     dy = 45
 
     for i, b in enumerate(buttons_icn):
         bitmap = displayio.OnDiskBitmap(b)
-        mainGroup.append(
+        main_group.append(
             displayio.TileGrid(bitmap, pixel_shader=bitmap.pixel_shader, y=y0 + dy * i)
         )
 
     lucida = bitmap_font.load_font("/fonts/luRS12.bdf")
-    mainGroup.append(
+    main_group.append(
         Label(lucida, text="Transmetteur Morse", color=0xFFFFFF, x=35, y=20)
     )
 
     for i, m in enumerate(messages):
-        mainGroup.append(
+        main_group.append(
             Label(lucida, text=m, color=0xFFFFFF, x=40, y=y0 + dy * i + 15)
         )
 
-    display.root_group = mainGroup
+    display.root_group = main_group
 
     m = MorseCode()
 
-    btn = "sw_up"
     while True:
         picomo.update()
         for i, b in enumerate(buttons):
             if picomo.buttons[b].fell:
                 send(m, messages[i])
                 break
+
 
 main()

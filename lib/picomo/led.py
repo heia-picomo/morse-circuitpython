@@ -27,7 +27,6 @@ import pwmio
 
 
 class RGBLed:
-
     def __init__(self, frequency=4000):
         r = pwmio.PWMOut(board.LED_R, frequency=frequency, duty_cycle=0)
         g = pwmio.PWMOut(board.LED_G, frequency=frequency, duty_cycle=0)
