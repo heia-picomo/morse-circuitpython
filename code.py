@@ -21,7 +21,7 @@ from morse import MorseCode
 time_unit = 0.1
 
 messages = [
-    "SOS"  # en haut,
+    "SOS",  # en haut,
     "Bonjour",  # à gauche,
     "Oui",  # au milieu
     "Non",  # à droite
