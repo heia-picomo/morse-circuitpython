@@ -19,7 +19,6 @@ Implementation Notes
   https://github.com/adafruit/circuitpython/releases
 """
 
-
 import re
 
 import displayio

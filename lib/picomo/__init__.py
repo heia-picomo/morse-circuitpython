@@ -23,7 +23,7 @@ Implementation Notes
   https://github.com/adafruit/Adafruit_CircuitPython_Ticks
 * Adafruit SHTC3 library:
   https://github.com/adafruit/Adafruit_CircuitPython_SHTC3
-  
+
 """
 
 import adafruit_shtc3

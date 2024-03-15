@@ -20,6 +20,18 @@ from morse import MorseCode
 
 time_unit = 0.1
 
+messages = [
+    "SOS"  # en haut,
+    "Bonjour",  # à gauche,
+    "Oui",  # au milieu
+    "Non",  # à droite
+    "HEIA",  # en bas
+]
+
+
+buttons = ["sw_up", "sw_left", "sw_mid", "sw_right", "sw_down"]
+buttons_icn = ["/pico_buttons_" + i + ".bmp" for i in ["t", "l", "c", "r", "b"]]
+
 
 def dit():
     picomo.led.set((255, 255, 255))
@@ -55,10 +67,6 @@ def main():
     display.root_group = group
 
     main_group = displayio.Group()
-
-    buttons = ["sw_up", "sw_left", "sw_mid", "sw_right", "sw_down"]
-    buttons_icn = ["/pico_buttons_" + i + ".bmp" for i in ["t", "l", "c", "r", "b"]]
-    messages = ["SOS", "Bonjour", "Oui", "Non", "HEIA"]
 
     y0 = 45
     dy = 45
