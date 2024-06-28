@@ -21,11 +21,11 @@ from morse import MorseCode
 time_unit = 0.1
 
 messages = [
-    "SOS",  # en haut,
-    "Bonjour",  # à gauche,
-    "Oui",  # au milieu
-    "Non",  # à droite
-    "HEIA",  # en bas
+    "Yes",  # up,
+    "No",  # left,
+    "SOS",  # middle
+    "I Love CS",  # right
+    "Hello",  # down
 ]
 
 
@@ -79,7 +79,7 @@ def main():
 
     lucida = bitmap_font.load_font("/fonts/luRS12.bdf")
     main_group.append(
-        Label(lucida, text="Transmetteur Morse", color=0xFFFFFF, x=35, y=20)
+        Label(lucida, text="Morse-Transmitter", color=0xFFFFFF, x=35, y=20)
     )
 
     for i, m in enumerate(messages):
