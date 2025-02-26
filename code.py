@@ -1,3 +1,11 @@
+# SPDX-FileCopyrightText: 2025 Jacques Supcik <jacques.supcik@hefr.ch>
+#
+# SPDX-License-Identifier: Apache-2.0 OR MIT
+
+"""
+Morse Code Transmitter
+"""
+
 import time
 
 import board
@@ -5,6 +13,7 @@ import displayio
 import picomo
 from adafruit_bitmap_font import bitmap_font
 from adafruit_display_shapes.circle import Circle
+from adafruit_display_shapes.line import Line
 from adafruit_display_text.label import Label
 from morse import MorseCode
 
@@ -20,7 +29,6 @@ messages = [
 
 
 buttons = ["sw_up", "sw_left", "sw_mid", "sw_right", "sw_down"]
-buttons_icn = ["/img/pico_buttons_" + i + ".bmp" for i in ["t", "l", "c", "r", "b"]]
 
 
 def draw_keypad(group, x, y, r, sel):
@@ -28,7 +36,7 @@ def draw_keypad(group, x, y, r, sel):
     for i, (xi, yi) in enumerate(
         [(x, y), (x + d, y), (x - d, y), (x, y - d), (x, y + d)]
     ):
-        fill = 0xFF3333 if i == sel else None
+        fill = 0xFF3333 if i == sel else 0x666666
         circle = Circle(xi, yi, r, fill=fill, outline=0xFFFFFF)
         group.append(circle)
 
@@ -69,8 +77,10 @@ def main():
     main_group = displayio.Group()
 
     x0 = 24
-    y0 = 60
+    y0 = 65
     dy = 45
+
+    main_group.append(Line(0, 35, display.width, 35, 0xFFFFFF))
 
     for i, k in enumerate([3, 2, 0, 1, 4]):
         draw_keypad(main_group, x0, y0 + i * dy, 5, k)

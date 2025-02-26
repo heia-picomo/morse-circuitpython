@@ -1,13 +1,22 @@
 # Morse Code Transmitter
 
-This is a simple Morse Code Transmitter for the PicoMo. It uses the PicoMo's LED and buzzer to transmit
-predefined messages in Morse Code.
+Ceci est un émetteur de code Morse simple pour le PicoMo. Il utilise la
+LED et le buzzer du PicoMo pour transmettre des messages prédéfinis en
+code Morse
 
-## Usage
+## Utilisation
 
-- [Optional] In order to start with a clean slate, you can completely wipe the PicoMo using the `flash_nuke.uf2` file (see https://learn.adafruit.com/getting-started-with-raspberry-pi-pico-circuitpython/circuitpython for detail)
-- Download the [Latest version of Circuit Python](https://circuitpython.org/board/picomo_v2/) for the PicoMo.
-- Install the Circuit Python firmware on the PicoMo.
-- Download this repository [as a zip file](https://github.com/heia-picomo/morse-circuitpython/archive/refs/heads/main.zip) and extract it (for example on your desktop).
-- Drag and drop the content of the `morse-circuitpython-main` folder onto the PicoMo.
-- Open the PicoMo in _Visual Studio Code_ to edit the `code.py` file.
+- [Facultatif] Si nécessaire, vous pouvez effacer complètement le PicoMo
+  à l'aide du fichier `flash_nuke.uf2` (voir
+  https://learn.adafruit.com/getting-started-with-raspberry-pi-pico-circuitpython/circuitpython
+  pour plus de détails).
+- Téléchargez la [Dernière version de Circuit Python]
+  (https://circuitpython.org/board/picomo_v3/) pour le PicoMo.
+- Installez le micrologiciel Circuit Python sur le PicoMo.
+- Téléchargez ce dépôt [sous forme de fichier
+  zip](https://github.com/heia-picomo/morse-circuitpython/archive/refs/heads/main.zip)
+  et extrayez-le (par exemple sur votre bureau).
+- Glissez-déposez le contenu du dossier `morse-circuitpython-main` sur
+  le PicoMo.
+- Ouvrez le PicoMo dans _Visual Studio Code_ pour éditer le fichier
+  `code.py`.
