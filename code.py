@@ -1,20 +1,10 @@
-################################################################################
-# @brief       : Morse Code Generator for PicoMo
-# @author      : Jacques Supcik <jacques.supcik@hefr.ch>
-# @date        : 13. March 2024
-# ------------------------------------------------------------------------------
-# @copyright   : Copyright (c) 2024 HEIA-FR / ISC
-#                Haute école d'ingénierie et d'architecture de Fribourg
-#                Informatique et Systèmes de Communication
-# @attention   : SPDX-License-Identifier: MIT
-################################################################################
-
 import time
 
 import board
 import displayio
 import picomo
 from adafruit_bitmap_font import bitmap_font
+from adafruit_display_shapes.circle import Circle
 from adafruit_display_text.label import Label
 from morse import MorseCode
 
@@ -30,7 +20,17 @@ messages = [
 
 
 buttons = ["sw_up", "sw_left", "sw_mid", "sw_right", "sw_down"]
-buttons_icn = ["/pico_buttons_" + i + ".bmp" for i in ["t", "l", "c", "r", "b"]]
+buttons_icn = ["/img/pico_buttons_" + i + ".bmp" for i in ["t", "l", "c", "r", "b"]]
+
+
+def draw_keypad(group, x, y, r, sel):
+    d = int(2.5 * r)
+    for i, (xi, yi) in enumerate(
+        [(x, y), (x + d, y), (x - d, y), (x, y - d), (x, y + d)]
+    ):
+        fill = 0xFF3333 if i == sel else None
+        circle = Circle(xi, yi, r, fill=fill, outline=0xFFFFFF)
+        group.append(circle)
 
 
 def dit():
@@ -68,14 +68,12 @@ def main():
 
     main_group = displayio.Group()
 
-    y0 = 45
+    x0 = 24
+    y0 = 60
     dy = 45
 
-    for i, b in enumerate(buttons_icn):
-        bitmap = displayio.OnDiskBitmap(b)
-        main_group.append(
-            displayio.TileGrid(bitmap, pixel_shader=bitmap.pixel_shader, y=y0 + dy * i)
-        )
+    for i, k in enumerate([3, 2, 0, 1, 4]):
+        draw_keypad(main_group, x0, y0 + i * dy, 5, k)
 
     lucida = bitmap_font.load_font("/fonts/luRS12.bdf")
     main_group.append(
@@ -83,9 +81,7 @@ def main():
     )
 
     for i, m in enumerate(messages):
-        main_group.append(
-            Label(lucida, text=m, color=0xFFFFFF, x=40, y=y0 + dy * i + 15)
-        )
+        main_group.append(Label(lucida, text=m, color=0xFFFFFF, x=50, y=y0 + dy * i))
 
     display.root_group = main_group
 
